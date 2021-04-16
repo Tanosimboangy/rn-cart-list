@@ -1,42 +1,34 @@
 import React, { useRef } from 'react'
-import { StyleSheet, TextInput, View } from "react-native"
-
+import { TextInput, View, StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
-
+    container: {
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+        padding: 10,
+    },
     input: {
         backgroundColor: '#fff',
-        fontSize: 10,
+        fontSize: 18,
         padding: 10,
-        borderRadius: 3
+        borderRadius: 3,
     },
-    container: {
-        backgroundColor: 'rgba(0,0,0,0.2)',
-        padding: 10,
-        fontSize: 10,
-        padding: 10,
-        borderRadius: 3
-    },
-
 })
-
-const AddItem = ({ onSubmitEditing, style, ...rest }) => {
-
-    const input = useRef(null)
+const AddItem = ({onSubmitEditing, style, ...rest}) => {
+    const input = useRef(null);
     return (
         <View style={styles.container}>
-            <TextInput
+            <TextInput 
                 ref={input}
-                style={[styles.input, style]} onSubmitEditing={(evt) => {
-                    if (onSubmitEditing) {
-                        onSubmitEditing(evt)
+                style={[styles.input, style]}
+                placeholder="Add new item..."
+                onSubmitEditing= {(evt) => {
+                    if(onSubmitEditing) {
+                        onSubmitEditing(evt);
                     }
-                    input.current.clear()
+                    input.current.clear();
                 }}
-                placeholder={'Add item...'}
                 {...rest}
             />
         </View>
     )
 }
-
 export default AddItem
